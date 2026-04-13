@@ -1,40 +1,53 @@
 ; (function () {
 
 	const roles = [
-		"Full Stack Developer",
-		".NET Developer",
+		"Full Stack .NET Developer",
 		"React Developer",
-		"UI Developer"
+		"Angular Developer",
+		"UI Developer",
+		"Azure Developer"
 	];
-
-	let roleIndex = 0;
-	let charIndex = 0;
-	const typingSpeed = 80;
-	const eraseSpeed = 40;
-	const delayBetweenRoles = 1500;
 
 	const typingElement = document.getElementById("typing-text");
 
-	function type() {
-		if (charIndex < roles[roleIndex].length) {
-			typingElement.textContent += roles[roleIndex].charAt(charIndex);
+	let roleIndex = 0;
+	let charIndex = 0;
+	let isDeleting = false;
+
+	const typingSpeed = 60;   // faster typing
+	const deletingSpeed = 30; // faster erase
+	const pauseTime = 1200;   // pause before erase
+
+	function typeEffect() {
+		const currentText = roles[roleIndex];
+
+		if (!isDeleting) {
+			// Typing
+			typingElement.textContent = currentText.substring(0, charIndex + 1);
 			charIndex++;
-			setTimeout(type, typingSpeed);
+
+			if (charIndex === currentText.length) {
+				isDeleting = true;
+				setTimeout(typeEffect, pauseTime);
+				return;
+			}
+
 		} else {
-			setTimeout(erase, delayBetweenRoles);
+			// Deleting
+			typingElement.textContent = currentText.substring(0, charIndex - 1);
+			charIndex--;
+
+			if (charIndex === 0) {
+				isDeleting = false;
+				roleIndex = (roleIndex + 1) % roles.length;
+			}
 		}
+
+		const speed = isDeleting ? deletingSpeed : typingSpeed;
+		setTimeout(typeEffect, speed);
 	}
 
-	function erase() {
-		if (charIndex > 0) {
-			typingElement.textContent = roles[roleIndex].substring(0, charIndex - 1);
-			charIndex--;
-			setTimeout(erase, eraseSpeed);
-		} else {
-			roleIndex = (roleIndex + 1) % roles.length;
-			setTimeout(type, typingSpeed);
-		}
-	}
+	document.addEventListener("DOMContentLoaded", typeEffect);
 
 	document.addEventListener("DOMContentLoaded", function () {
 		type();
