@@ -75,7 +75,12 @@
 			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 		}
 	};
-
+	//button
+	window.addEventListener("scroll", function () {
+		const btn = document.querySelector(".resume-float");
+		btn.style.display = window.scrollY > 50 ? "block" : "none";
+	});
+	//end button
 
 	var fullHeight = function () {
 
