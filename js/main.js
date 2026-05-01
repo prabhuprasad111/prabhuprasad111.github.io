@@ -2,6 +2,7 @@
 
 	const roles = [
 		"Full Stack .NET Developer",
+		"Freelancer",
 		"React Developer",
 		"Angular Developer",
 		"UI Developer",
@@ -75,12 +76,12 @@
 			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 		}
 	};
-	//button
 	window.addEventListener("scroll", function () {
-		const btn = document.querySelector(".resume-float");
-		btn.style.display = window.scrollY > 50 ? "block" : "none";
+		var btn = document.querySelector(".resume-float");
+		if (btn) {
+			btn.style.display = window.scrollY > 50 ? "flex" : "none";
+		}
 	});
-	//end button
 
 	var fullHeight = function () {
 
@@ -166,8 +167,8 @@
 			scaleColor: false,
 			lineWidth: 4,
 			lineCap: 'butt',
-			barColor: '#FF9000',
-			trackColor: "#f5f5f5",
+			barColor: '#0d9488',
+			trackColor: '#e2e8f0',
 			size: 160,
 			animate: 1000
 		});
