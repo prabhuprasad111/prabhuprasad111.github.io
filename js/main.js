@@ -2,11 +2,11 @@
 
 	const roles = [
 		"Full Stack .NET Developer",
-		"Freelancer",
-		"React Developer",
+		"Automation & Integration Engineer",
 		"Angular Developer",
-		"UI Developer",
-		"Azure Developer"
+		"React Developer",
+		"Freelancer",
+		"Azure Developer",
 	];
 
 	const typingElement = document.getElementById("typing-text");
